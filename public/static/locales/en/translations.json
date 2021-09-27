@@ -13,9 +13,11 @@
   "MyProfile": "My Profile",
   "Forbidden": "Not allowed to see this page!",
   "NavBar": {
-    "Dashboard": "Dashboard",
+    "Welcome": "Welcome",
     "Settings": "Settings",
-    "MyFirstMenu": "My First Menu"
+    "MyFirstMenu": "My First Menu",
+    "Conferences": "Conferences",
+    "MyConferences": "My Conferences"
   },
   "Tooltips": {
     "Logout": "Logout",
@@ -51,5 +53,63 @@
       "MinCharacters": "The length must be greater than {{min}}",
       "Unique": "The value of {{selector}} must be unique"
     }
+  },
+  "LandingPage": {
+    "Title": "Welcome!",
+    "Subtitle": "Please enter your email:",
+    "BadEmail": "This is not a valid email!"
+  },
+  "UserMenu": {
+    "User": "User"
+  },
+  "Conferences": {
+    "Filters": {
+      "StartDate": "StartDate",
+      "EndDate": "EndDate"
+    },
+    "Speaker": "Speaker :",
+    "Attend": "Attend",
+    "Join": "Join",
+    "Withdraw": "Withdraw",
+    "StatusNotSet": "Not attending"
+  },
+  "MyConferences": {
+    "Edit": "Edit",
+    "Delete": "Delete"
+  },
+  "General": {
+    "Buttons": {
+      "ApplyFilters": "Apply filters",
+      "ResetFilters": "Reset filters",
+      "AddConference": "Add Conference",
+      "AddSpeaker": "Add Speaker",
+      "DeleteSpeaker": "Delete speaker",
+      "Save": "Save"
+    }
+  },
+  "Conference": {
+    "Info": "Conference info",
+    "Location": "Location",
+    "Speakers": "Speakers",
+    "Name": "Conference name",
+    "StartDate": "Start date",
+    "EndDate": "End date",
+    "Type": "Conference type",
+    "Category": "Category"
+  },
+  "Location": {
+    "Name": "Name",
+    "Address": "Address",
+    "Country": "Country",
+    "County": "County",
+    "City": "City",
+    "Latitude": "Latitude",
+    "Longitude": "Longitude"
+  },
+  "Speaker": {
+    "Name": "Name",
+    "Nationality": "Nationality",
+    "Rating": "Rating",
+    "MainSpeaker": "Main Speaker"
   }
 }

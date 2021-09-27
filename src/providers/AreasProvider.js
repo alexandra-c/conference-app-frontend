@@ -9,9 +9,7 @@ export const AreasWrapper = ({ children }) => (
 AreasWrapper.propTypes = { children: PropTypes.element.isRequired }
 
 export const HeaderContext = createContext()
-export const HeaderProvider = ({ children }) => (
-  <HeaderContext.Provider value={useState(null)}>{children}</HeaderContext.Provider>
-)
+export const HeaderProvider = ({ children }) => <HeaderContext.Provider value={useState(null)}>{children}</HeaderContext.Provider>
 HeaderProvider.propTypes = { children: PropTypes.element.isRequired }
 export const useHeader = initialHeader => {
   const [get, set] = useContext(HeaderContext)
@@ -29,9 +27,7 @@ export const useHeader = initialHeader => {
 }
 
 export const FooterContext = createContext()
-export const FooterProvider = ({ children }) => (
-  <FooterContext.Provider value={useState(null)}>{children}</FooterContext.Provider>
-)
+export const FooterProvider = ({ children }) => <FooterContext.Provider value={useState(null)}>{children}</FooterContext.Provider>
 FooterProvider.propTypes = { children: PropTypes.element.isRequired }
 export const useFooter = initialFooter => {
   const [get, set] = useContext(FooterContext)

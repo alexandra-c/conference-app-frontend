@@ -50,9 +50,7 @@ export const useError = () => {
 
       const graphQLErrors = error?.graphQLErrors ?? []
       graphQLErrors.forEach(err => {
-        err?.extensions?.code
-          ? addErrorToast(generateErrorMessage(err))
-          : addErrorToast(generateSimpleErrorMessage(err.message))
+        err?.extensions?.code ? addErrorToast(generateErrorMessage(err)) : addErrorToast(generateSimpleErrorMessage(err.message))
       })
 
       const networkErrors = error?.networkError?.result?.errors ?? []
