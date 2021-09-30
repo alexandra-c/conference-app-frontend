@@ -2,14 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import ConferenceFilters from './ConferenceFilters'
 import ConferenceList from './ConferenceList'
 import LoadingFakeText from '@bit/totalsoft_oss.react-mui.fake-text'
-import { generateDefaultFilters } from 'utils/functions'
+import { extractPager, generateDefaultFilters } from 'utils/functions'
 import { useQueryWithErrorHandling } from 'hooks/errorHandling'
 import { CONFERENCE_LIST_QUERY } from '../gql/queries/ConferenceListQuery'
 import { useEmail } from 'hooks/useEmail'
 import { useFooter } from 'providers/AreasProvider'
 import Pagination from '@bit/totalsoft_oss.react-mui.pagination'
-
-const extractPager = ({ page, pageSize }) => ({ page, pageSize })
 
 function ConferenceListContainer() {
   const [filters, setFilters] = useState(generateDefaultFilters())
@@ -20,7 +18,11 @@ function ConferenceListContainer() {
   useEffect(() => () => setFooter(null), []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const { data, loading, refetch } = useQueryWithErrorHandling(CONFERENCE_LIST_QUERY, {
-    variables: { pager: extractPager(pager), filters, email },
+    variables: {
+      pager: extractPager(pager),
+      filters,
+      email
+    },
     onCompleted: result => {
       const totalCount = result?.conferenceList?.pagination?.totalCount
       setPager(state => ({ ...state, totalCount }))
