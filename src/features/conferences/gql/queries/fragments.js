@@ -8,6 +8,24 @@ const Fragments = {
       startDate
       endDate
     }
+  `,
+  location: gql`
+    fragment location on Location {
+      id
+      name
+      address
+      latitude
+      longitude
+    }
+  `,
+  speaker: gql`
+    fragment speaker on Speaker {
+      id
+      name
+      isMainSpeaker
+      nationality
+      rating
+    }
   `
 }
 
