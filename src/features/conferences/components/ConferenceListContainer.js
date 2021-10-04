@@ -15,7 +15,8 @@ import DialogDisplay from '@bit/totalsoft_oss.react-mui.dialog-display'
 import ConferenceCodeModal from './ConferenceCodeModal'
 import { useToast } from '@bit/totalsoft_oss.react-mui.kit.core'
 import { useTranslation } from 'react-i18next'
-import { emptyString } from 'utils/constants'
+import { emptyString, emptyArray } from 'utils/constants'
+import { WITHDRAW_CONFERENCE_MUTATION } from '../gql/mutations/WithdrawConference'
 
 function ConferenceListContainer() {
   const showError = useError()
@@ -23,6 +24,7 @@ function ConferenceListContainer() {
   const { t } = useTranslation()
   const [code, setCode] = useState()
   const [open, setOpen] = useState(false)
+  const [suggestedConferences, setSuggestedConferences] = useState(emptyArray)
 
   const [filters, setFilters] = useState(generateDefaultFilters())
   const [pager, setPager] = useState({ totalCount: 0, page: 0, pageSize: 3 })
@@ -47,11 +49,20 @@ function ConferenceListContainer() {
     onError: showError,
     onCompleted: result => {
       if (result?.attend) {
-        setCode(result?.attend)
+        setCode(result?.attend?.code)
+        setSuggestedConferences(result?.attend?.suggestedConferences)
         setOpen(true)
         addToast(t('Conferences.SuccessfullyAttended'), 'success')
       }
     }
+  })
+
+  const [withdraw] = useMutation(WITHDRAW_CONFERENCE_MUTATION, {
+    onCompleted: () => {
+      addToast(t('Conferences.SuccessfullyWithdrawn'), 'success')
+      refetch()
+    },
+    onError: showError
   })
 
   const handleAttend = useCallback(
@@ -66,6 +77,17 @@ function ConferenceListContainer() {
       })
     },
     [attend, email]
+  )
+
+  const handleWithdraw = useCallback(
+    conference => () => {
+      const input = {
+        attendeeEmail: email,
+        conferenceId: conference?.id
+      }
+      withdraw({ variables: { input } })
+    },
+    [email, withdraw]
   )
 
   const handleRowsPerPageChange = useCallback(pageSize => {
@@ -107,13 +129,20 @@ function ConferenceListContainer() {
   return (
     <>
       <ConferenceFilters filters={filters} onApplyFilters={handleApplyFilters} />
-      <ConferenceList conferences={data?.conferenceList?.values} onAttend={handleAttend} />
+      <ConferenceList conferences={data?.conferenceList?.values} onAttend={handleAttend} onWithdraw={handleWithdraw} />
       <DialogDisplay
         id='showQRCode'
         open={open}
         onClose={handleClose}
         title={t('General.Congratulations')}
-        content={<ConferenceCodeModal code={code} />}
+        content={
+          <ConferenceCodeModal
+            code={code}
+            suggestedConferences={suggestedConferences}
+            onAttend={handleAttend}
+            onWithdraw={handleWithdraw}
+          />
+        }
       />
     </>
   )

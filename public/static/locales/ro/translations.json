@@ -66,7 +66,8 @@
     "Withdraw": "Retrage-te",
     "StatusNotSet": "Nu participi",
     "SuccessfullyAttended": "Felicitari! Te-ai inscris cu succes la conferinta! Vei fi notificat cu 5 minute inainte sa inceapa.",
-    "QRCodeMessage": "Te-ai inscris cu succes la conferinta! Vei fi notificat cu 5 minute inainte sa inceapa. Foloseste urmatorul cod pentru a accesa conferinta: {{code}}"
+    "QRCodeMessage": "Te-ai inscris cu succes la conferinta! Vei fi notificat cu 5 minute inainte sa inceapa. Foloseste urmatorul cod pentru a accesa conferinta: {{code}}",
+    "SuccessfullyWithdrawn": "Te-ai retras cu succes de la aceasta conferinta."
   },
   "MyConferences": {
     "Edit": "Editeaza",
@@ -81,7 +82,8 @@
       "AddSpeaker": "Adauga orator",
       "DeleteSpeaker": "Sterge orator",
       "Save": "Salveaza"
-    }
+    },
+    "SuggestedConferences": "Pe baza alegerii facute, va sugeram urmatoarele conferinte:"
   },
   "Conference": {
     "Info": "Informatii conferinta",
