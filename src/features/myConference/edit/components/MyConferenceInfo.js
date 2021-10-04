@@ -6,6 +6,7 @@ import CustomTextField from '@bit/totalsoft_oss.react-mui.custom-text-field'
 import DateTime from '@bit/totalsoft_oss.react-mui.date-time'
 import Autocomplete from '@bit/totalsoft_oss.react-mui.autocomplete'
 import { onTextBoxChange } from 'utils/propertyChangeAdapters'
+import { compareOptions } from 'utils/functions'
 
 const MyConferenceInfo = props => {
   const { types, categories, conference, dispatch } = props
@@ -28,7 +29,15 @@ const MyConferenceInfo = props => {
           <DateTime label={t('Conference.EndDate')} showTime={true} value={endDate} onChange={handleChange('endDate')} />
         </Grid>
         <Grid item lg={3} sm={6} xs={12}>
-          <Autocomplete label={t('Conference.Type')} fullWidth isClearable options={types} value={type} onChange={handleChange('type')} />
+          <Autocomplete
+            getOptionSelected={compareOptions}
+            label={t('Conference.Type')}
+            fullWidth
+            isClearable
+            options={types}
+            value={type}
+            onChange={handleChange('type')}
+          />
         </Grid>
         <Grid item lg={3} sm={6} xs={12}>
           <Autocomplete
@@ -38,6 +47,7 @@ const MyConferenceInfo = props => {
             options={categories}
             value={category}
             onChange={handleChange('category')}
+            getOptionSelected={compareOptions}
           />
         </Grid>
       </Grid>

@@ -75,7 +75,8 @@ i18n
 
       react: {
         wait: true,
-        usePureComponent: true
+        usePureComponent: true,
+        useSuspense: true
       },
 
       backend: {
