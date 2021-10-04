@@ -71,13 +71,16 @@
     "Attend": "Attend",
     "Join": "Join",
     "Withdraw": "Withdraw",
-    "StatusNotSet": "Not attending"
+    "StatusNotSet": "Not attending",
+    "SuccessfullyAttended": "Congratulations! You successfully attended to the conference! You will be notified to join 5 minutes before it starts.",
+    "QRCodeMessage": "You successfully attended to the conference! You will be notified to join 5 minutes before it starts. Use the following code to access the conference: {{code}}"
   },
   "MyConferences": {
     "Edit": "Edit",
     "Delete": "Delete"
   },
   "General": {
+    "Congratulations": "Congratulations!",
     "Buttons": {
       "ApplyFilters": "Apply filters",
       "ResetFilters": "Reset filters",

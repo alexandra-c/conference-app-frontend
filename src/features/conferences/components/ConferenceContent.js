@@ -7,7 +7,7 @@ import { Grid } from '@material-ui/core'
 import Button from '@bit/totalsoft_oss.react-mui.button'
 
 const ConferenceContent = props => {
-  const { conference } = props
+  const { conference, onAttend } = props
   const { status, startDate, endDate, type, category } = conference
 
   const { t } = useTranslation()
@@ -15,7 +15,7 @@ const ConferenceContent = props => {
 
   const showJoin = status?.id === attendeeStatus.Attended
   const showWithdraw = status?.id === attendeeStatus.Attended || status?.id === attendeeStatus.Joined
-  const showAttend = status?.id === attendeeStatus.Withdrawn
+  const showAttend = status?.id === attendeeStatus.Withdrawn || !status
 
   const startDateFormatted = t('DATE_FORMAT', { date: { value: startDate, format: 'DD-MM-YYYY HH:mm' } })
   const endDateFormatted = t('DATE_FORMAT', { date: { value: endDate, format: 'DD-MM-YYYY HH:mm' } })
@@ -46,7 +46,7 @@ const ConferenceContent = props => {
             </Button>
           )}
           {showAttend && (
-            <Button right size='sm' color='info'>
+            <Button onClick={onAttend(conference?.id)} right size='sm' color='info'>
               {t('Conferences.Attend')}
             </Button>
           )}
@@ -57,7 +57,8 @@ const ConferenceContent = props => {
 }
 
 ConferenceContent.propTypes = {
-  conference: PropTypes.object.isRequired
+  conference: PropTypes.object.isRequired,
+  onAttend: PropTypes.func.isRequired
 }
 
 export default ConferenceContent
